@@ -12,11 +12,12 @@ ADD ./usePost05.go /pro/
 ADD ./go.mod ./go.sum /pro/
 WORKDIR /pro
 RUN go get -d -v ./...
-RUN go build -o server usePost05.go
+RUN export VERSION=$(git rev-list -1 HEAD)
+RUN go build -ldflags "-X main.VERSION=$VERSION" -o server usePost05.go
 
 FROM alpine:latest
 
 RUN mkdir /pro
 COPY --from=builder /pro/server /pro/server
 WORKDIR /pro
-CMD ["/pro/server"]
+CMD ["/pro/server" "version"]
