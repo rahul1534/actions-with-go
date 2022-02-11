@@ -10,6 +10,7 @@ RUN apk update && apk add --no-cache git
 RUN mkdir /pro
 ADD ./usePost05.go /pro/
 ADD ./go.mod ./go.sum /pro/
+ADD .git /pro/
 WORKDIR /pro
 RUN go get -d -v ./...
 RUN export VERSION=$(git rev-list -1 HEAD)
