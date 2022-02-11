@@ -21,4 +21,4 @@ FROM alpine:latest
 RUN mkdir /pro
 COPY --from=builder /pro/server /pro/server
 WORKDIR /pro
-CMD ["/pro/server" "version"]
+CMD ["/pro/server", "version"]
