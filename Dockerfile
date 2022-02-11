@@ -13,8 +13,7 @@ ADD ./go.mod ./go.sum /pro/
 ADD .git /pro/
 WORKDIR /pro
 RUN go get -d -v ./...
-RUN export VERSION=$(git rev-list -1 HEAD)
-RUN go build -ldflags "-X main.VERSION=$VERSION" -o server usePost05.go
+RUN export VERSION=$(git rev-list -1 HEAD) && go build -ldflags "-X main.VERSION=$VERSION" -o server usePost05.go
 
 FROM alpine:latest
 
